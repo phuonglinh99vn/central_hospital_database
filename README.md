@@ -7,6 +7,10 @@
 ## Overview
 This document provides comprehensive documentation for the Central Sydney Hospital (CSH) database schema. The schema models a complete hospital information system including departments, staff management, patient admissions, and billing operations.
 
+## Database Design
+
+<img width="1270" height="669" alt="image" src="https://github.com/user-attachments/assets/9c5c7377-db33-4f76-a18d-7a5e395ee7f4" />
+
 ## Quick Start Guide
 
 ### Installation Steps
