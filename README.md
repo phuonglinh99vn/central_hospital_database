@@ -1,6 +1,6 @@
 # Central Sydney Hospital Database Schema - README
 ## File Information
-**Filename:** `central_hospital_schema.sql`  
+**Filename:** `central_hospital_schema.sql`, `central_hospital_queries.sql` 
 **Database:** Central Sydney Hospital (CSH) Information System   
 **PostgreSQL Version:** 16.2
 
