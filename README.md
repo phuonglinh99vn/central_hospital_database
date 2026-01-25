@@ -297,8 +297,6 @@ Credit card payment records.
 
 ## Constraint Summary
 
-### Assignment Requirements Compliance
-
 | Requirement | Constraint Implementation | Status |
 |-------------|---------------------------|--------|
 | 1. Date/time fields always have values | NOT NULL on all date/timestamp columns | ✅ |
@@ -309,42 +307,6 @@ Credit card payment records.
 | 6. Bill total cost constraints | CHECK (total_cost > 0 AND total_cost <= 50000) | ✅ |
 | 7. Non-negative financial values | CHECK (insurance_covered_amount >= 0)<br>CHECK (remaining_balance >= 0 via formula) | ✅ |
 
-### CHECK Constraints
-
-**Dimension Constraints:**
-```sql
-CHECK (bed_length > 0 AND bed_length <= 2.13)
-CHECK (bed_width > 0 AND bed_width <= 1.27)
-CHECK (mattress_thickness >= 15.24 AND mattress_thickness <= 17.78)
-```
-
-**Financial Constraints:**
-```sql
-CHECK (salary > 0)
-CHECK (total_cost > 0 AND total_cost <= 50000)
-CHECK (insurance_covered_amount >= 0)
-CHECK (insurance_covered_amount <= total_cost)
-CHECK (bed_cost >= 0)
-CHECK (payment_amount > 0)
-```
-
-**Enumeration Constraints:**
-```sql
-CHECK (staff_type IN ('Doctor', 'Nurse', 'Allied Health'))
-CHECK (admission_type IN ('Planned', 'Emergency'))
-CHECK (ward_type IN ('General', 'ICU'))
-CHECK (severity_level IN ('Critical', 'High', 'Medium', 'Low'))
-```
-
-**Business Logic Constraints:**
-```sql
--- WWCC clearance validation
-CHECK (wwcc_clearance = FALSE OR 
-       (wwcc_clearance = TRUE AND wwcc_expiry_date IS NOT NULL))
-
--- Staff headcount non-negative
-CHECK (staff_headcount >= 0)
-```
 
 ### Foreign Key ON DELETE Behaviors
 
@@ -479,37 +441,7 @@ The schema includes realistic sample data demonstrating all features:
 ### Billing Cycles (2 completed)
 1. John Smith: $3,500 total, $2,800 insurance, $700 owed (PAID)
 2. Emma Wilson: $8,500 total, $7,000 insurance, $1,500 owed (PAID)
-
-
-
-## Troubleshooting
-
-### Common Issues
-
-**Issue 1: Foreign key violation when inserting data**
-```
-ERROR: insert or update on table "..." violates foreign key constraint
-```
-**Solution:** Ensure parent records exist before inserting child records. Follow the order in the sample data section.
-
-**Issue 2: Check constraint violation**
-```
-ERROR: new row for relation "..." violates check constraint
-```
-**Solution:** Review the constraint requirements (e.g., bed dimensions, salary > 0). Adjust values accordingly.
-
-**Issue 3: Unique constraint violation**
-```
-ERROR: duplicate key value violates unique constraint
-```
-**Solution:** Ensure primary keys and unique fields (e.g., reference_number) have distinct values.
-
-**Issue 4: Generated column error**
-```
-ERROR: cannot insert into column "remaining_balance"
-```
-**Solution:** Do not include generated columns in INSERT statements. They are calculated automatically.
-
+   
 ### Debug Queries
 
 ```sql
@@ -574,9 +506,6 @@ CREATE INDEX idx_payment_invoice ON Payment(invoice_id);
 6. **Operating Theatre Management:** Track surgery schedules
 7. **Insurance Provider:** Normalize insurance information
 8. **Staff Scheduling:** Track shifts and availability
-
-
-## Version History
 
 
 **End of README**
