@@ -483,29 +483,5 @@ central_hospital_schema.sql
     └── Billing and payments
 ```
 
-## Maintenance & Extensions
-
-### Recommended Indexes (Future Enhancement)
-
-```sql
--- Performance indexes for common queries
-CREATE INDEX idx_admission_patient ON Admission(patient_id);
-CREATE INDEX idx_admission_dates ON Admission(admission_date, discharge_date);
-CREATE INDEX idx_staff_dept ON Staff(dept_name);
-CREATE INDEX idx_billing_admission ON BillingStatement(admission_id);
-CREATE INDEX idx_payment_invoice ON Payment(invoice_id);
-```
-
-### Potential Extensions
-
-1. **Audit Trail:** Add created_at/updated_at timestamps
-2. **Bed Assignment:** Track which patients occupy which beds
-3. **Medication Records:** Track prescriptions and administration
-4. **Appointment Scheduling:** Add appointment management
-5. **Medical Records:** Store diagnosis and treatment notes
-6. **Operating Theatre Management:** Track surgery schedules
-7. **Insurance Provider:** Normalize insurance information
-8. **Staff Scheduling:** Track shifts and availability
-
 
 **End of README**
