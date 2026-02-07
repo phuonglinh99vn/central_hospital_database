@@ -118,7 +118,7 @@ WITH RECURSIVE dept_hierarchy AS (
 SELECT * FROM dept_hierarchy;
 
 -- =====================================================
--- SECTION 3: ADVANCED AGGREGATIONS & GROUPING
+-- SECTION 3: AGGREGATIONS & GROUPING
 -- =====================================================
 
 -- Query 6: ROLLUP and CUBE for multi-dimensional analysis
